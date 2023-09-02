@@ -17,9 +17,13 @@ const currentDate = new Date();
 //  console.log(`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`);
 
 const port = process.env.PORT ?? 8080;
+app.use((req, res, next) => {
+  res.header("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  next();
+});
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Trabajo Practico Integrador WEB 2</h1><h2><em>Solicitud recibida en  ${currentDate} :${req.method}  ${req.originalUrl} </em></h2>`);
+  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Solicitud recibida en  ${currentDate} :${req.method}  ${req.originalUrl} </em></h2>`);
 });
 
 app.use((req, res) => {
