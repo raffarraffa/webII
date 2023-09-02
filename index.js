@@ -22,6 +22,10 @@ app.get("/", (req, res) => {
   res.send(`<h1>Trabajo Practico Integrador WEB 2</h1><h2><em>Solicitud recibida en  ${currentDate} :${req.method}  ${req.originalUrl} </em></h2>`);
 });
 
+app.use((req, res) => {
+  res.status(404).send("<h1>Página no encontrada</h1>");
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
