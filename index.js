@@ -14,7 +14,7 @@ server.listen(port, () => {
 const express = require("express");
 const app = express();
 const currentDate = new Date();
-  console.log(`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`);
+//  console.log(`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`);
 
 const port = process.env.PORT ?? 8080;
 
