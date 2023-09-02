@@ -19,7 +19,7 @@ const currentDate = new Date();
 const port = process.env.PORT ?? 8080;
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hola, mundo</h1><h2>Para Leo TOloza</h2><p>`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`</p>");
+  res.send(`<h1>Hola, mundo</h1><h2>Para Leo TOloza</h2><p> <em>Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}</em></p>`);
 });
 
 app.listen(port, () => {
