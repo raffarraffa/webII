@@ -13,11 +13,13 @@ server.listen(port, () => {
 */
 const express = require("express");
 const app = express();
+const currentDate = new Date();
+  console.log(`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`);
 
 const port = process.env.PORT ?? 8080;
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hola, mundo</h1><h2>Para Leo TOloza</h2>");
+  res.send("<h1>Hola, mundo</h1><h2>Para Leo TOloza</h2><p>`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`</p>");
 });
 
 app.listen(port, () => {
