@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado  ${fechaHoraActualUTC}) : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
+  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado  ${fechaHoraActualUTC}( ${new Date().toString().slice(0, 25)} ) : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
 });
 
 app.use((req, res) => {
