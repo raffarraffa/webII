@@ -1,6 +1,6 @@
 import express from "express";
 /** pruebas cargar variables de entorno */
-import { config } from 'dotenv';
+/*import { config } from 'dotenv';
 const nodeEnv = process.env.NODE_ENV.trim();
 if ('dev' === nodeEnv) {
   //require('dotenv').config({ path: '.env.dev' });
@@ -18,6 +18,7 @@ console.log(databaseUrl);
 console.log(secretKey);
 console.log(debug);
 console.log(apiUrl);
+*/
 /** fin pruebas carga entorno */
 
 const app = express();
