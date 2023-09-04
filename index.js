@@ -3,9 +3,7 @@ const app = express();
 const currentDateUTC = new Date();
 const currentDate = currentDateUTC.toUTCString();
 // la fecha y hora actual en UTC-3
-const fechaHoraActualUTC = new Date();
-// Ajusta la fecha y hora al huso horario UTC-3
-fechaHoraActualUTC.setUTCHours(fechaHoraActualUTC.getUTCHours() - 3);
+const fechaHoraActualUTC = (new Date().toString().slice(0, 25));
 //console.log(fechaHoraActualUTC);
 
 
@@ -23,7 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado  ${currentDate} ( ${fechaHoraActualUTC}) : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
+  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado  ${fechaHoraActualUTC}) : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
 });
 
 app.use((req, res) => {
