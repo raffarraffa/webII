@@ -1,29 +1,43 @@
-/*
-const http = require('http');
+import express from "express";
+/** pruebas cargar variables de entorno */
+import { config } from 'dotenv';
+const nodeEnv = process.env.NODE_ENV.trim();
+if ('dev' === nodeEnv) {
+  //require('dotenv').config({ path: '.env.dev' });
+  config({ path: '.env.dev' });
+  console.log('.env.dev cargado correctamente');
+} else if (nodeEnv === 'prod') {
+  config({ path: '.env.prod' });
+  console.log('.env.prod cargado correctamente');
+}
+const databaseUrl = process.env.DATABASE_URL;
+const secretKey = process.env.SECRET_KEY;
+const debug = process.env.DEBUG;
+const apiUrl = process.env.API_URL;
+console.log(databaseUrl);
+console.log(secretKey);
+console.log(debug);
+console.log(apiUrl);
+/** fin pruebas carga entorno */
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hola, mundo\n');
-});
-
-const port = process.env.PORT || 3000;
-server.listen(port, () => {
-  console.log(`Servidor Node.js ejecutándose en http://localhost:${port}`);
-});
-*/
-const express = require("express");
 const app = express();
 const currentDate = new Date();
-//  console.log(`Solicitud recibida en ${currentDate}: ${req.method} ${req.originalUrl}`);
-
-const port = process.env.PORT ?? 8080;
+const port = process.env.PORT ?? 8002;
+// ste header no cache
+if (debug) {
+  app.use((req, res, next) => {
+    res.header("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+    console.log(`peticion ${req.method} ruta ${req.originalUrl} Sin cache`);
+    next();
+  });
+}
 app.use((req, res, next) => {
   res.header("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
   next();
 });
 
 app.get("/", (req, res) => {
-  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy relaizado  ${currentDate} : Metodo peticion ${req.method}  ${req.originalUrl} </em></h2>`);
+  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado  ${currentDate} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
 });
 
 app.use((req, res) => {
