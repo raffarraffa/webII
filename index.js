@@ -1,10 +1,8 @@
 import express from 'express';
 // permite leer el directorio de trabajo
 import { dirname } from 'path';
-
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
-console.log(`__filename: ${__filename}`);
 const __dirname = dirname(__filename);
 const tpi = express();
 const port = 8080;
@@ -19,7 +17,6 @@ if (DEV) {
   });
 }
 // rutas
-
 tpi.get(`/${__ver}/`, (req, res) => {
   res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>Deploy realizado ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
 });
