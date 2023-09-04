@@ -1,7 +1,7 @@
 import express from "express";
 const app = express();
 const currentDate = new Date();
-const port = process.env.PORT ?? 8002;
+const port = 8080;
 // ste header no cache
 
 app.use((req, res, next) => {
