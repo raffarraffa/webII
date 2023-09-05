@@ -1,10 +1,12 @@
 import express from 'express';
+import compression from 'compression';
 import { getPreguntas } from "./v1/controllers/main_src.js";
 const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
 const port = 8081;
 const DEV = true;
-
+tpi.use(compression());
+tpi.use(express.json());
 if (DEV) {
   tpi.use((req, res, next) => {
     res.header("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
@@ -18,8 +20,9 @@ tpi.get(`/preguntas`, async (req, res) => {
 });
 // ruta  archivo HTML default
 tpi.get('/', (req, res) => {
-  const indexPath = `./views/index.html`;
-  res.sendFile(indexPath);
+  //  const indexPath = `./views/index.html`;
+  //  res.sendFile(indexPath);
+  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
