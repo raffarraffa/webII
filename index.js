@@ -26,4 +26,4 @@ tpi.listen(port, () => {
 });
 
 
-console.log(await getPreguntas(url));
+//console.log(await getPreguntas(url));

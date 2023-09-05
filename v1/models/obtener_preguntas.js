@@ -3,9 +3,7 @@ function obtenerPreguntas(data) {
     paisesKeyMesclados(keys);
     let preguntas = [];
     for (let i = 0; i < 10; i++) {
-        let pregunta = {
-
-        };
+        let pregunta = {};
         let respuesta = [];
         let num = Math.floor(Math.random() * 2);
         if (num % 2 == 0) {
@@ -24,11 +22,9 @@ function obtenerPreguntas(data) {
             for (let j = i; j < i + 3; j++) {
                 respuesta.push(data[keys[j + 10]].nombre);
             }
-
         }
         pregunta.respuesta = respuesta;
         preguntas.push(pregunta);
-
     }
     return preguntas;
 }
@@ -41,12 +37,10 @@ function obtenerKey(data) {
     return paisesArrayKey;
 }
 function paisesKeyMesclados(keys) {
-    // let keyShuffle = [...keys];
     for (let i = keys.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [keys[i], keys[j]] = [keys[j], keys[i]];
     }
-    //     return data;
 }
 
 function creaPregunta(keys, data) {
