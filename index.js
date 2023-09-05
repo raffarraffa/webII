@@ -23,10 +23,14 @@ tpi.get(`/preguntas`, async (req, res) => {
 // ruta  archivo HTML default
 
 tpi.get('/', (req, res) => {
+<<<<<<< HEAD
   console.log('sirvideno index');
   const inde = "/index.html";
   res.sendFile(inde);
   //res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
+=======
+ res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
+>>>>>>> c3f5bacad62a88675d9e20fb99a931d99f799f53
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
