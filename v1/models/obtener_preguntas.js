@@ -1,3 +1,5 @@
+//TODO NO PUEDE EXISTIR IMPORT DE OTRO MODELO AISLADOS ENTRE SI..
+//TODO SI TENGO QUE IMPORTAR MODELO VA EN controllers
 function obtenerPreguntas(data) {
     let keys = obtenerKey(data);
     paisesKeyMesclados(keys);
@@ -28,6 +30,10 @@ function obtenerPreguntas(data) {
     }
     return preguntas;
 }
+//TODO modelos : pregunta, respuesta, nuevo juego
+//TODO aca deberia tener metodos , con devolucion de datos.
+//TODO logica interna de cada modelo
+
 
 function obtenerKey(data) {
     let paisesArrayKey = [];
@@ -36,13 +42,13 @@ function obtenerKey(data) {
     };
     return paisesArrayKey;
 }
+
 function paisesKeyMesclados(keys) {
     for (let i = keys.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [keys[i], keys[j]] = [keys[j], keys[i]];
     }
 }
-
 function creaPregunta(keys, data) {
     let pregunta = {};
 }

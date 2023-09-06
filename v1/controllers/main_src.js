@@ -9,4 +9,7 @@ async function getPreguntas(url) {
         console.error('Error:', error);
     }
 }
-export { getPreguntas };  
+export { getPreguntas };
+//TODO usa modleos para intercomnucacion, reglas negocio distiotons modelos
+//TODO  recibe del suaurio la pregiunta y la respeusta,  deberia responder , llamando al metodo si true o false, (TIEMPOS, PUNTAJE. etc)
+// TODO 
