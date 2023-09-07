@@ -7,7 +7,7 @@ const tpi = express();
 const port = 8080;
 const DEV = true;
 const corsOptions = {
-  origin: '[http://127.0.0.1:5503', '*'],
+  origin: ['http://127.0.0.1:5503','*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   // credentials: true,
   optionsSuccessStatus: 204,
@@ -33,12 +33,14 @@ tpi.get('/', (req, res) => {
   const inde = "/index.html";
   res.sendFile(inde);
 });
+
 tpi.get('/respuesta', (req, res) => {
   const clave = req.query.clave;
   const pregunta = req.query.pregunta;
   const respuesta = req.query.respuesta;
   const tiempo = req.query.tiempo;
   clave != 34 ? res.status(200).send('true') : res.status(400).send('false');
+
 });
 // tpi.get('/respuesta', (req, res) => {
 //   res.status(200).send();
