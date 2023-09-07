@@ -7,7 +7,7 @@ const tpi = express();
 const port = 8080;
 const DEV = true;
 const corsOptions = {
-  origin: '[http://127.0.0.1:5503','*'],
+  origin: ['http://127.0.0.1:5503','*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   // credentials: true,
   optionsSuccessStatus: 204,
