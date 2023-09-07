@@ -60,7 +60,11 @@ tpi.get('/respuesta', (req, res) => {
 });
 
 tpi.post('/respuesta', (req, res) => {
-  res.status(200).send(req.body.respuesta);
+  const rpt = req.body;
+  console.log(Object.values(paises[rpt.clave]).includes(rpt.respuesta));
+  //if(paises[rpt.clave].==rpt)
+  console.log(paises[req.body.clave]);
+  res.status(200).send(Object.values(paises[rpt.clave]).includes(rpt.respuesta));
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
