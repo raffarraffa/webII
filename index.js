@@ -1,5 +1,6 @@
 import express from 'express';
 import compression from 'compression';
+import { obtenerPaises } from "./v1/models/obtener_paises.js";
 //import pg from 'pg';
 import cors from 'cors';
 import { getPreguntas } from "./v1/controllers/main_src.js";
@@ -7,6 +8,7 @@ const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
 const port = 8080;
 const DEV = true;
+var paises = await obtenerPaises(url);
 /*
 const client = new pg.Client({
   user: 'fl0user',
@@ -34,8 +36,9 @@ if (DEV) {
 }
 tpi.get(`/preguntas`, async (req, res) => {
   //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
-  res.send(await getPreguntas(url)); //BUG conservar preguntas
+  res.send(await getPreguntas(paises)); //BUG conservar preguntas
 });
+
 tpi.get(`/paises`, async (req, res) => {
   if (!paises) { await getPreguntas(url) }
   //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
