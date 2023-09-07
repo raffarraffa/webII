@@ -25,6 +25,7 @@ function obtenerPreguntas(data) {
                 respuesta.push(data[keys[j + 10]].nombre);
             }
         }
+        paisesKeyMesclados(respuesta);
         pregunta.respuesta = respuesta;
         preguntas.push(pregunta);
     }
