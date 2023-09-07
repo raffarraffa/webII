@@ -47,8 +47,7 @@ tpi.get('/respuesta', (req, res) => {
 });
 
 tpi.post('/respuesta', (req, res) => {
-  if ()
-    res.status(200).send(req.body.respuesta);
+  res.status(200).send(req.body.respuesta);
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
