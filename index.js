@@ -1,11 +1,21 @@
 import express from 'express';
 import compression from 'compression';
+//import pg from 'pg';
 import cors from 'cors';
 import { getPreguntas } from "./v1/controllers/main_src.js";
 const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
 const port = 8080;
 const DEV = true;
+/*
+const client = new pg.Client({
+  user: 'fl0user',
+  host: 'ep-round-mud-58521732.ap-southeast-1.aws.neon.tech',
+  database: 'rafalopez',
+  password: 'pciTKF9fSq3a',
+  port: 5432, 
+});
+*/
 const corsOptions = {
   origin: ['http://127.0.0.1:5503', '*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
