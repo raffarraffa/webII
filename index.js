@@ -8,7 +8,15 @@ const port = 8080;
 const DEV = true;
 tpi.use(compression());
 tpi.use(express.json());
-tpi.use(cors());
+
+const corsOptions = {
+  origin: '*',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+tpi.use(cors(corsOptions));
 if (DEV) {
   tpi.use((req, res, next) => {
     res.header("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
@@ -27,7 +35,7 @@ tpi.get('/', (req, res) => {
   const inde = "/index.html";
   res.sendFile(inde);
 });
-tpi.post('/', (req, res) => {
+tpi.post('/respuesta', (req, res) => {
   //res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
   const datos = req.body;
   res.status(200).send('Solicitud POST recibida con éxito');
