@@ -24,7 +24,12 @@ if (DEV) {
 }
 tpi.get(`/preguntas`, async (req, res) => {
   //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
-  res.send(await getPreguntas(url));
+  res.send(await getPreguntas(url)); //BUG conservar preguntas
+});
+tpi.get(`/paises`, async (req, res) => {
+  if (!paises) { await getPreguntas(url) }
+  //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
+  res.send(paises); //BUG conservar preguntas
 });
 // ruta  archivo HTML default
 tpi.use(compression());
@@ -42,8 +47,8 @@ tpi.get('/respuesta', (req, res) => {
 });
 
 tpi.post('/respuesta', (req, res) => {
-  //  const resp = JSON.stringify(req.body);
-  res.status(200).send(req.body.respuesta);
+  if ()
+    res.status(200).send(req.body.respuesta);
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);

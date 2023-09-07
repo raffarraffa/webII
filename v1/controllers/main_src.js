@@ -1,8 +1,11 @@
 import { obtenerPaises } from "../models/obtener_paises.js";
 import { obtenerPreguntas } from "../models/obtener_preguntas.js";
+let paises;
 async function getPreguntas(url) {
     try {
-        const paises = await obtenerPaises(url);
+        if (!paises) {
+            paises = await obtenerPaises(url);
+        }
         const preguntas = await obtenerPreguntas(paises);
         return preguntas;
     } catch (error) {
