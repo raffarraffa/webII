@@ -9,7 +9,7 @@ let intervalId;
 let resultadoRespuestas = [];
 let puntaje = 0;
 const DEBUG = false;
-const apiUrl = DEBUG ? 'http://localhost:8082' : 'https://tuds-web2-dev.fl0.io';
+const apiUrl = DEBUG ? 'http://localhost:8080' : 'https://tuds-web2-dev.fl0.io';
 
 // Captura de elementos del documento
 const timer = document.getElementById('time');
