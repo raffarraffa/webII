@@ -67,6 +67,7 @@ function mostrarResultado() {
  *  pero de todas maenra el jugado rpuede busca rimagen en google
  */
 async function crearTrivia(dato) {
+    clearInterval(intervalId);
     const inicioPregunta = performance.now();
     const container = document.getElementById('pregunta');
     container.innerHTML = '';
@@ -102,7 +103,7 @@ async function crearTrivia(dato) {
             const finPregunta = performance.now();
             //        const inicioPregunta = performance.now();
             //            const tiempo = tiempoInicial - tiempoRestante;
-            const tiempo = (finPregunta - inicioPregunta).toFixed(2);
+            const tiempo = (finPregunta / 1000 - inicioPregunta / 1000).toFixed(2);
             tiempoTotal += Number(tiempo);
             let data = {
                 clave: claveInput[0].value,
