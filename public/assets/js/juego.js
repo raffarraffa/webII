@@ -53,7 +53,7 @@ function mostrarResultado() {
     cardRespuesta.innerHTML = '';
     const div = document.createElement('div');
     const p = document.createElement('p');
-    p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${tiempoTotal} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
+    p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${tiempoTotal.tofix(2)} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
     div.appendChild(p);
     container.appendChild(div);
     resultadoRespuestas = JSON.stringify(resultadoRespuestas);
@@ -67,6 +67,7 @@ function mostrarResultado() {
  *  pero de todas maenra el jugado rpuede busca rimagen en google
  */
 async function crearTrivia(dato) {
+    const incioPregunta = performance.now();
     const container = document.getElementById('pregunta');
     container.innerHTML = '';
     cardRespuesta.innerHTML = '';
@@ -98,8 +99,11 @@ async function crearTrivia(dato) {
         resp.addEventListener('click', async () => {
             const claveInput = document.getElementsByName('clave');
             const tipoInput = document.getElementsByName('tipo');
-            const tiempo = tiempoInicial - tiempoRestante;
-            tiempoTotal += tiempo;
+            const finPregunta = performance.now();
+            const incioPregunta = performance.now();
+//            const tiempo = tiempoInicial - tiempoRestante;
+            const tiempo = (finPregunta - inicioPregunta).toFixed(2);
+            tiempoTotal += number(tiempo);
             let data = {
                 clave: claveInput[0].value,
                 tipo: tipoInput[0].value,
