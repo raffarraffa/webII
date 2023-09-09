@@ -139,8 +139,9 @@ function verificarTiempoRestante() {
         tiempoRestante -= 1;
         timer.textContent = tiempoRestante;
         if (tiempoRestante <= 0) {
+                        clearInterval(intervalId);
             presentarPregunta();
-            clearInterval(intervalId);
+
         }
     }
 }
