@@ -53,7 +53,7 @@ function mostrarResultado() {
     cardRespuesta.innerHTML = '';
     const div = document.createElement('div');
     const p = document.createElement('p');
-    p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${tiempoTotal.tofix(2)} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
+    p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${(tiempoTotal.tofix(2))} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
     div.appendChild(p);
     container.appendChild(div);
     resultadoRespuestas = JSON.stringify(resultadoRespuestas);
@@ -103,7 +103,7 @@ async function crearTrivia(dato) {
             //        const inicioPregunta = performance.now();
             //            const tiempo = tiempoInicial - tiempoRestante;
             const tiempo = (finPregunta - inicioPregunta).toFixed(2);
-            tiempoTotal += number(tiempo);
+            tiempoTotal += Number(tiempo);
             let data = {
                 clave: claveInput[0].value,
                 tipo: tipoInput[0].value,
