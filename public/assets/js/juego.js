@@ -39,6 +39,7 @@ function presentarPregunta() {
         crearTrivia(pregunta);
         tiempoRestante = tiempoInicial;
         intervalId = setInterval(verificarTiempoRestante, 1000);
+        
     } else {
         clearInterval(intervalId);
         mostrarResultado();
@@ -118,8 +119,8 @@ async function crearTrivia(dato) {
 
             }
             resultadoRespuestas.push(data);
+            console.log(`Tiempo ${time}`);
             presentarPregunta();
-            console.log('121');
             //  if (data.resultado === 'true') { puntaje++; };
 
         });
