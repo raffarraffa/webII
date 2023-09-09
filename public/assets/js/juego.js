@@ -119,7 +119,7 @@ async function crearTrivia(dato) {
 
             }
             resultadoRespuestas.push(data);
-            console.log(`Tiempo ${time}`);
+            console.log(`Tiempo ${tiempo}`);
             presentarPregunta();
             //  if (data.resultado === 'true') { puntaje++; };
 
