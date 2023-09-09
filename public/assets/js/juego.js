@@ -8,8 +8,8 @@ let tiempoTotal = 0;
 let intervalId;
 let resultadoRespuestas = [];
 let puntaje = 0;
-const DEBUG = false;
-const apiUrl = DEBUG ? 'http://localhost:8080' : 'https://tuds-web2-dev.fl0.io';
+const DEBUG = true;
+const apiUrl = DEBUG ? 'http://localhost:8082' : 'https://tuds-web2-dev.fl0.io';
 
 // Captura de elementos del documento
 const timer = document.getElementById('time');
@@ -55,9 +55,16 @@ function mostrarResultado() {
     p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${tiempoTotal} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
     div.appendChild(p);
     container.appendChild(div);
-    resultadoRespuestas =JSON.stringify(resultadoRespuestas);
+    resultadoRespuestas = JSON.stringify(resultadoRespuestas);
     console.log(`Array de respuestas -> ${resultadoRespuestas}`);
 }
+/**
+ * Crea l aprguta para la trivia en base a la dta recibida del server
+ * la data contien , tipo pregunta, pregunta y 4 repsuestas poibles 
+ * no identifica la repsuesta correcta pra evitar que el usario pueda ver a repsuesta
+ * en e caso d ebandera, se cpomplica, tal vez deberia venir codificado como base64 desde el server,
+ *  pero de todas maenra el jugado rpuede busca rimagen en google
+ */
 async function crearTrivia(dato) {
     const container = document.getElementById('pregunta');
     container.innerHTML = '';
@@ -110,9 +117,11 @@ async function crearTrivia(dato) {
                 //TODO codigo para cambio boton errone, resaltar boton correcto, 
 
             }
-            presentarPregunta();
-            if (data.resultado === 'true') { puntaje++; debug('123', 'puntaje dentro if ' + puntaje); };
             resultadoRespuestas.push(data);
+            presentarPregunta();
+            console.log('121');
+            //  if (data.resultado === 'true') { puntaje++; };
+
         });
         divAux.appendChild(resp);
         cardRespuesta.appendChild(divAux);
