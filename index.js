@@ -1,27 +1,25 @@
 import express from 'express';
 import compression from 'compression';
 import { obtenerPaises } from "./v1/models/obtener_paises.js";
-//import pg from 'pg';
+import pg from 'pg';
 import cors from 'cors';
 import { getPreguntas } from "./v1/controllers/main_src.js";
 const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
-const port = 8080;
+const port = 8082;
 const DEV = true;
 var paises = await obtenerPaises(url);
-/*
-const client = new pg.Client({
+var clientDB = new pg.Client({
   user: 'fl0user',
   host: 'ep-round-mud-58521732.ap-southeast-1.aws.neon.tech',
   database: 'rafalopez',
   password: 'pciTKF9fSq3a',
-  port: 5432, 
+  port: 5432,
+  ssl: { rejectUnauthorized: false },
 });
-*/
 const corsOptions = {
   origin: ['http://127.0.0.1:5503', '*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  // credentials: true,
   optionsSuccessStatus: 204,
 };
 tpi.use(compression());
@@ -35,14 +33,12 @@ if (DEV) {
   });
 }
 tpi.get(`/preguntas`, async (req, res) => {
-  //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
-  res.send(await getPreguntas(paises)); //BUG conservar preguntas
+  res.send(await getPreguntas(paises));
 });
 
 tpi.get(`/paises`, async (req, res) => {
   if (!paises) { await getPreguntas(url) }
-  //  res.send(`<h1>Trabajo Practico Integrador WEB 2 </h1><h2><em>respuesta realizada ${new Date()} : Método petición ${req.method}  ${req.originalUrl} </em></h2>`);
-  res.send(paises); //BUG conservar preguntas
+  res.send(paises);
 });
 // ruta  archivo HTML default
 tpi.use(compression());
@@ -51,22 +47,42 @@ tpi.get('/', (req, res) => {
   const inde = "/index.html";
   res.sendFile(inde);
 });
-tpi.get('/respuesta', (req, res) => {
+tpi.get('/pregunta', (req, res) => {
   const clave = req.query.clave;
-  const pregunta = req.query.pregunta;
-  const respuesta = req.query.respuesta;
-  const tiempo = req.query.tiempo;
-  clave > 34 ? res.status(200).send('true') : res.status(400).send('false');
+  const respuesta = paises[clave];
+  res.status(200).send(respuesta);
 });
-
 tpi.post('/respuesta', (req, res) => {
   const rpt = req.body;
   console.log(Object.values(paises[rpt.clave]).includes(rpt.respuesta));
-  //if(paises[rpt.clave].==rpt)
+  console.log(`Peticion ${rpt.tipo}`);
   console.log(paises[req.body.clave]);
-  res.status(200).send(Object.values(paises[rpt.clave]).includes(rpt.respuesta));
+  let resultado = {
+    respuesta: Object.values(paises[rpt.clave]).includes(rpt.respuesta),
+    pregunta: paises[req.body.clave]
+  };
+  res.status(200).send(JSON.stringify(resultado));
 });
 tpi.listen(port, () => {
   console.log(`Servidor Express en ejecución en http://localhost:${port}`);
 });
-//console.log(await getPreguntas(url));
+/***** pruebas base datos postgrsql *****/
+const consultaPreparada = {
+  name: 'seleccionar_usuarios',
+  text: 'SELECT * FROM usuarios',
+};
+
+async function ejecutarConsultaPreparada() {
+  try {
+    await clientDB.connect();
+    // Ejecutar la consulta preparada
+    const resultado = await clientDB.query(consultaPreparada);
+    console.log('Filas seleccionadas:', resultado.rows);
+  } catch (error) {
+    console.error('Error al ejecutar la consulta:', error);
+  } finally {
+    // Cierra la conexión al finalizar las operaciones
+    clientDB.end();
+  }
+}
+ejecutarConsultaPreparada();
