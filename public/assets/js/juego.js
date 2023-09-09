@@ -38,7 +38,6 @@ function presentarPregunta() {
         const pregunta = paises[preguntaIndex];
         crearTrivia(pregunta);
         tiempoRestante = tiempoInicial;
-        intervalId = setInterval(verificarTiempoRestante, 1000);
 
     } else {
         clearInterval(intervalId);
@@ -68,6 +67,8 @@ function mostrarResultado() {
  */
 async function crearTrivia(dato) {
     clearInterval(intervalId);
+    intervalId = setInterval(verificarTiempoRestante, 1000);
+
     const inicioPregunta = performance.now();
     const container = document.getElementById('pregunta');
     container.innerHTML = '';
