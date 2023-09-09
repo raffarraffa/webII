@@ -18,7 +18,7 @@ var clientDB = new pg.Client({
   ssl: { rejectUnauthorized: false },
 });
 const corsOptions = {
-  origin: ['http://127.0.0.1:5503', '*'],
+  origin: ['http://localhost:8080','http://127.0.0.1:5503', '*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204,
 };
