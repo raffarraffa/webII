@@ -8,7 +8,7 @@ let tiempoTotal = 0;
 let intervalId;
 let resultadoRespuestas = [];
 let puntaje = 0;
-const DEBUG = true;
+const DEBUG = false;
 const apiUrl = DEBUG ? 'http://localhost:8082' : 'https://tuds-web2-dev.fl0.io';
 
 // Captura de elementos del documento
