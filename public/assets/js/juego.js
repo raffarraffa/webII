@@ -39,7 +39,7 @@ function presentarPregunta() {
         crearTrivia(pregunta);
         tiempoRestante = tiempoInicial;
         intervalId = setInterval(verificarTiempoRestante, 1000);
-        
+
     } else {
         clearInterval(intervalId);
         mostrarResultado();
@@ -67,7 +67,7 @@ function mostrarResultado() {
  *  pero de todas maenra el jugado rpuede busca rimagen en google
  */
 async function crearTrivia(dato) {
-    const incioPregunta = performance.now();
+    const inicioPregunta = performance.now();
     const container = document.getElementById('pregunta');
     container.innerHTML = '';
     cardRespuesta.innerHTML = '';
@@ -100,8 +100,8 @@ async function crearTrivia(dato) {
             const claveInput = document.getElementsByName('clave');
             const tipoInput = document.getElementsByName('tipo');
             const finPregunta = performance.now();
-    //        const incioPregunta = performance.now();
-//            const tiempo = tiempoInicial - tiempoRestante;
+            //        const inicioPregunta = performance.now();
+            //            const tiempo = tiempoInicial - tiempoRestante;
             const tiempo = (finPregunta - inicioPregunta).toFixed(2);
             tiempoTotal += number(tiempo);
             let data = {
@@ -143,7 +143,7 @@ function verificarTiempoRestante() {
         tiempoRestante -= 1;
         timer.textContent = tiempoRestante;
         if (tiempoRestante <= 0) {
-                        clearInterval(intervalId);
+            clearInterval(intervalId);
             presentarPregunta();
 
         }
