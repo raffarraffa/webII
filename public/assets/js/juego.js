@@ -100,7 +100,7 @@ async function crearTrivia(dato) {
             const claveInput = document.getElementsByName('clave');
             const tipoInput = document.getElementsByName('tipo');
             const finPregunta = performance.now();
-            const incioPregunta = performance.now();
+    //        const incioPregunta = performance.now();
 //            const tiempo = tiempoInicial - tiempoRestante;
             const tiempo = (finPregunta - inicioPregunta).toFixed(2);
             tiempoTotal += number(tiempo);
