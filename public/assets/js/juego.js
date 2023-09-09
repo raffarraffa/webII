@@ -55,6 +55,7 @@ function mostrarResultado() {
     p.innerHTML = `Su puntaje fue  ${puntaje} / ${paises.length}.<br> Respondió en ${tiempoTotal} segundos <br> Su tiempo promedio fue ${(tiempoTotal / paises.length).toFixed(2)} segundos`;
     div.appendChild(p);
     container.appendChild(div);
+    debug('Array de respuestas -> ', resultadoRespuestas);
 }
 async function crearTrivia(dato) {
     const container = document.getElementById('pregunta');
