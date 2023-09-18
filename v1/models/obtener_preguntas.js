@@ -13,6 +13,7 @@ function obtenerPreguntas(data) {
             pregunta.tipo = 'capital';
             respuesta.push(data[keys[i]].capital);
             pregunta.pregunta = data[keys[i]].nombre;
+            pregunta.bandera = data[keys[i]].bandera;
             for (let j = i; j < i + 3; j++) {
                 respuesta.push(data[keys[j + 10]].capital);
             }
