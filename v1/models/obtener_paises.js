@@ -33,7 +33,8 @@ function paisesFiltra(data) {
     let paises = [];
     let pais = {};
     for (let i = 0; i < data.length; i++) {
-        if (data[i] && data[i].translations.spa.official && data[i].capital && data[i].flags.svg) {
+        //if (data[i] && data[i].translations.spa.official && data[i].capital && data[i].flags.svg) {
+        if (data[i] && data[i].translations.spa.common && data[i].capital && data[i].flags.svg) {
             pais = {
                 nombre: data[i].translations.spa.official,
                 bandera: data[i].flags.svg,
