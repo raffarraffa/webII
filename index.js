@@ -6,7 +6,7 @@ import cors from 'cors';
 import { getPreguntas } from "./v1/controllers/main_src.js";
 const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
-const port = 8080;
+const port = 8090;
 const DEV = true;
 var paises = await obtenerPaises(url);
 var clientDB = new pg.Client({
@@ -18,7 +18,7 @@ var clientDB = new pg.Client({
   ssl: { rejectUnauthorized: false },
 });
 const corsOptions = {
-  origin: ['http://localhost:8088','http://localhost:8080','http://localhost:*','http://127.0.0.1:*', '*'],
+  origin: ['http://localhost:8088', 'http://localhost:8080', 'http://localhost:*', 'http://127.0.0.1:*', '*'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   optionsSuccessStatus: 204,
 };
@@ -40,6 +40,12 @@ tpi.get(`/paises`, async (req, res) => {
   if (!paises) { await getPreguntas(url) }
   res.send(paises);
 });
+tpi.post(`/game`, async (req, res) => {
+  const rpt = JSON.stringify(req.body);
+  console.log(`Peticion ${rpt}`);
+
+  res.json({ mensaje: 'Solicitud POST recibida y procesada correctamente' });
+})
 // ruta  archivo HTML default
 tpi.use(compression());
 tpi.use(express.static('public'));
