@@ -6,7 +6,7 @@ import cors from 'cors';
 import { getPreguntas } from "./v1/controllers/main_src.js";
 const url = 'https://restcountries.com/v3.1/all';
 const tpi = express();
-const port = 8090;
+const port = 8080;
 const DEV = true;
 var paises = await obtenerPaises(url);
 var clientDB = new pg.Client({
